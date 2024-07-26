@@ -1,10 +1,10 @@
 package com.example.demoACC;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.example.demoACC")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class DemoAccApplication {
