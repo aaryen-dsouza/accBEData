@@ -4,13 +4,13 @@ import java.util.List;
 
 public class ProcessedData {
     private List<EmailValidationResult> emailsValidated;
-    private List<String> phoneNumbers;
+    private List<ValidPhoneNumber> phoneNumbers;
     private List<String> url;
     private List<String> date;
 
 
 
-    public ProcessedData(List<EmailValidationResult> emailsValidated, List<String> phoneNumbers, List<String> url, List<String> date) {
+    public ProcessedData(List<EmailValidationResult> emailsValidated, List<ValidPhoneNumber> phoneNumbers, List<String> url, List<String> date) {
         this.emailsValidated = emailsValidated;
         this.phoneNumbers = phoneNumbers;
         this.url = url;
@@ -25,11 +25,11 @@ public class ProcessedData {
         this.emailsValidated = emails;
     }
 
-    public List<String> getPhoneNumbers() {
+    public List<ValidPhoneNumber> getPhoneNumbers() {
         return phoneNumbers;
     }
 
-    public void setPhoneNumbers(List<String> phoneNumbers) {
+    public void setPhoneNumbers(List<ValidPhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
     }
 

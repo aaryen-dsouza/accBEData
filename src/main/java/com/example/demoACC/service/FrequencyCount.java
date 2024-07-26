@@ -4,9 +4,7 @@ package com.example.demoACC.service;
 import java.io.*; // Import classes used to implement I/O operations
 import java.util.*; // Import this class for understanding data structures
 import java.util.regex.*; // Import for regular expressions
-
 import org.springframework.stereotype.Service;
-
 import com.example.demoACC.dto.FrequencyCountRequest;
 
 @Service
@@ -25,14 +23,14 @@ public class FrequencyCount {
         );
 
         String[] pages = {
-            "https://www.fido.ca/phones/?icid=F_WIR_CNV_MXDFRS", 
-            "https://www.fido.ca/phones/bring-your-own-device?icid=F_WIR_CNV_GRM6LG&flowType=byod",
-            "https://shop.freedommobile.ca/en-CA/", 
-            "https://shop.freedommobile.ca/en-CA/plans",
-            "https://www.koodomobile.com/en/phones?INTCMP=KMNew_NavMenu_Shop_Phones", 
-            "https://www.koodomobile.com/en/rate-plans?INTCMP=KMNew_NavMenu_Shop_Plans",
-            "https://www.metrobyt-mobile.com/phone-plans?INTNAV=tNav%3APlans",
-            "https://www.rogers.com/plans?icid=R_WIR_CMH_6WMCMZ"
+            "fido-phones-page", 
+            "fido-plan-page",
+            "freedom-phone-page", 
+            "freedom-plans-page",
+            "koodo-phone-page", 
+            "koodo-plans-page",
+            "t-mobile-home-page",
+            "rogers-home-page"
         };
 
         // Array to store frequency counts for each file
