@@ -1,4 +1,4 @@
-package com.example.demoACC.service;
+package com.example.demoACC.model;
 
     public class EmailValidationResult {
     private String email;

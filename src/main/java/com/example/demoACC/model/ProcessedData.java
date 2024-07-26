@@ -1,28 +1,28 @@
-package com.example.demoACC.service;
+package com.example.demoACC.model;
 
 import java.util.List;
 
 public class ProcessedData {
-    private List<EmailValidationResult> emails;
+    private List<EmailValidationResult> emailsValidated;
     private List<String> phoneNumbers;
     private List<String> url;
     private List<String> date;
 
 
 
-    public ProcessedData(List<EmailValidationResult> emails, List<String> phoneNumbers, List<String> url, List<String> date) {
-        this.emails = emails;
+    public ProcessedData(List<EmailValidationResult> emailsValidated, List<String> phoneNumbers, List<String> url, List<String> date) {
+        this.emailsValidated = emailsValidated;
         this.phoneNumbers = phoneNumbers;
         this.url = url;
         this.date = date;
     }
 
-    public List<EmailValidationResult> getEmails() {
-        return emails;
+    public List<EmailValidationResult> getEmailsValidated() {
+        return emailsValidated;
     }
 
-    public void setEmails(List<EmailValidationResult> emails) {
-        this.emails = emails;
+    public void setEmailsValidated(List<EmailValidationResult> emails) {
+        this.emailsValidated = emails;
     }
 
     public List<String> getPhoneNumbers() {
