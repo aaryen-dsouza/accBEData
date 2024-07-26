@@ -2,6 +2,7 @@ package com.example.demoACC.controller;
 
 import com.example.demoACC.dto.FrequencyCountRequest;
 import com.example.demoACC.dto.PageRankingRequest;
+import com.example.demoACC.dto.SearchFrequencyRequest;
 import com.example.demoACC.dto.SpellCheckingRequest;
 import com.example.demoACC.dto.WordCompletionRequest;
 import com.example.demoACC.model.Mobile;
@@ -9,6 +10,8 @@ import com.example.demoACC.model.Plan;
 import com.example.demoACC.model.ProcessedData;
 import com.example.demoACC.service.CsvService;
 import com.example.demoACC.service.ProcessService;
+import com.example.demoACC.service.SearchFrequency;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +52,9 @@ public class DataController {
 
     @Autowired
     private FrequencyCount frequencyCount;
+
+    @Autowired
+    private SearchFrequency searchFrequency;
 
     @GetMapping("/fido-mobile-plans")
     public List<Mobile> getFidoMobilePlans() {
@@ -100,13 +106,22 @@ public class DataController {
         return frequencyCount.getFrequencyCount(request);
     }
 
-    @PostMapping("/extract-emails")
-    public ResponseEntity<ProcessedData> extractEmails(@RequestParam("file") MultipartFile file, @RequestParam("domain") String domain) {
+    @PostMapping("add-search-frequency")
+    public boolean addSearchFrequency(@RequestBody SearchFrequencyRequest request) {
+        return searchFrequency.addSearchFrequency(request);
+    }
+
+    @GetMapping("get-search-frequency")
+    public List<Map<String, Integer>> getSearchFrequency() {
+        return searchFrequency.getTopSearches();
+    }
+
+    @PostMapping("/extract-data-from-text")
+    public ResponseEntity<ProcessedData> extractDataFromText(@RequestParam("file") MultipartFile file, @RequestParam("domain") String domain) {
         try {
             // Save the file locally
             File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file.getOriginalFilename());
             file.transferTo(convFile);
-
             // Process the file
             ProcessedData processedData = processService.processFile(convFile.getAbsolutePath(), domain);
             return new ResponseEntity<>(processedData, HttpStatus.OK);

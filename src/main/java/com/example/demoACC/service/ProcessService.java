@@ -5,6 +5,8 @@ import com.example.demoACC.helper.PhoneNumberHelper;
 import com.example.demoACC.helper.UrlHelper;
 import com.example.demoACC.model.EmailValidationResult;
 import com.example.demoACC.model.ProcessedData;
+import com.example.demoACC.model.ValidPhoneNumber;
+
 import org.springframework.stereotype.Service;
 import com.example.demoACC.helper.EmailHelper;
 
@@ -13,13 +15,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-
-
-
 @Service
 
 public class ProcessService {
-    
 
     public ProcessedData processFile(String filePath, String domain) throws IOException {
         StringBuilder text = new StringBuilder();
@@ -28,10 +26,8 @@ public class ProcessService {
             while ((line = reader.readLine()) != null) {
                 text.append(line).append("\n");
             }
-        
-
         List<EmailValidationResult> emailResults = EmailHelper.extractAndValidateEmailAddresses(text.toString(), domain);
-        List<String> phoneNumbers = PhoneNumberHelper.extractPhoneNumbers(text.toString());
+        List<ValidPhoneNumber> phoneNumbers = PhoneNumberHelper.extractPhoneNumbers(text.toString());
         List<String> urls = UrlHelper.extractUrls(text.toString());
         List<String> dates = DateHelper.extractDates(text.toString());
 
