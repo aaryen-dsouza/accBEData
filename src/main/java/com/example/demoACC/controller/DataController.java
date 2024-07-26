@@ -5,9 +5,11 @@ import com.example.demoACC.dto.PageRankingRequest;
 import com.example.demoACC.dto.SearchFrequencyRequest;
 import com.example.demoACC.dto.SpellCheckingRequest;
 import com.example.demoACC.dto.WordCompletionRequest;
+import com.example.demoACC.model.BestPlan;
 import com.example.demoACC.model.Mobile;
 import com.example.demoACC.model.Plan;
 import com.example.demoACC.model.ProcessedData;
+import com.example.demoACC.service.BestPlanService;
 import com.example.demoACC.service.CsvService;
 import com.example.demoACC.service.ProcessService;
 import com.example.demoACC.service.SearchFrequency;
@@ -55,6 +57,9 @@ public class DataController {
 
     @Autowired
     private SearchFrequency searchFrequency;
+
+    @Autowired
+    private BestPlanService bestPlanService;
 
     @GetMapping("/fido-mobile-plans")
     public List<Mobile> getFidoMobilePlans() {
@@ -114,6 +119,11 @@ public class DataController {
     @GetMapping("get-search-frequency")
     public List<Map<String, Integer>> getSearchFrequency() {
         return searchFrequency.getTopSearches();
+    }
+
+    @GetMapping("best-plans")
+    public List<BestPlan> getBestPlan() {
+        return bestPlanService.getBestPlan();
     }
 
     @PostMapping("/extract-data-from-text")
