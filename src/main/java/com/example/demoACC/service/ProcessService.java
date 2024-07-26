@@ -6,12 +6,13 @@ import com.example.demoACC.helper.UrlHelper;
 import com.example.demoACC.model.EmailValidationResult;
 import com.example.demoACC.model.ProcessedData;
 import org.springframework.stereotype.Service;
+import com.example.demoACC.helper.EmailHelper;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
-import com.example.demoACC.helper.EmailHelper;
+import java.util.List;
+
 
 
 
@@ -27,13 +28,24 @@ public class ProcessService {
             while ((line = reader.readLine()) != null) {
                 text.append(line).append("\n");
             }
-        }
+        
 
         List<EmailValidationResult> emailResults = EmailHelper.extractAndValidateEmailAddresses(text.toString(), domain);
         List<String> phoneNumbers = PhoneNumberHelper.extractPhoneNumbers(text.toString());
-        List<String> url = UrlHelper.extractUrls(text.toString());
-        List<String> date = DateHelper.extractDates(text.toString());
+        List<String> urls = UrlHelper.extractUrls(text.toString());
+        List<String> dates = DateHelper.extractDates(text.toString());
 
-        return new ProcessedData(emailResults, phoneNumbers, url, date);
+        return new ProcessedData(emailResults, phoneNumbers, urls, dates);
+
+    } catch (IOException e) {
+        // Handle file reading errors
+        System.err.println("Error reading file: " + e.getMessage());
+        e.printStackTrace(); // For debugging; remove in production
+    } catch (Exception e) {
+        // Handle other unexpected exceptions
+        System.err.println("An unexpected error occurred: " + e.getMessage());
+        e.printStackTrace(); // For debugging; remove in production
     }
+    return null;
+}
 }
